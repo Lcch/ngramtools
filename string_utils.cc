@@ -177,8 +177,11 @@ unsigned long hashpjw(const char* x) // From Dragon book, p436
 }
 
 bool GetLineAndStrip(istream& istrm, string& line) {
-  bool r = getline(istrm, line);
-  int p = line.find_last_not_of(" \t\r\n");
-  line.resize(p + 1);
-  return r;
+  if (getline(istrm, line)) {
+    int p = line.find_last_not_of(" \t\r\n");
+    line.resize(p + 1);
+    return true;
+  } else {
+    return false;
+  }
 }

@@ -21,7 +21,7 @@
 #define hash_map unordered_map
 #define hash_set unordered_set
 
-using namespace __gnu_cxx;
+// using namespace __gnu_cxx;
 using namespace std;
 
 // Split the string by the separaters in set. The results are saved in fields.
