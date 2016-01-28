@@ -2,7 +2,7 @@
 #include <fstream>
 
 #include "string_utils.h"
-#include "bloom-read-only/bloom_filter.hpp"
+#include "bloom/bloom_filter.hpp"
 
 using namespace std;
 
@@ -21,7 +21,12 @@ int main(int argc, char* argv[]) {
   }
   string line, all;
   ifstream file(phrase_list.c_str());
-  bloom_filter bloom(predicted_element_count, false_positive_probability, random_seed);
+  bloom_parameters bloom_para;
+  bloom_para.projected_element_count = predicted_element_count;
+  bloom_para.false_positive_probability = false_positive_probability;
+  bloom_para.random_seed = random_seed;
+  bloom_filter bloom(bloom_para);
+  // bloom_filter bloom(predicted_element_count, false_positive_probability, random_seed);
   while (getline(file, line)) {
     bloom.insert(line);
   }
